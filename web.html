@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Learning Platform</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to the E-Learning Platform</h1>
+    <nav>
+      <ul>
+        <li><a href="#home" id="home-link">Home</a></li>
+        <li><a href="#courses" id="courses-link">Courses</a></li>
+      </ul>
+    </nav>
+  </header>
+<!-- Login Section -->
+<section id="login" class="page">
+  <h2>Login</h2>
+  <form id="login-form">
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Enter your email" required><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" placeholder="Enter your password" required><br><br>
+    <button type="submit" id="login-btn">Login</button>
+  </form>
+  <p id="login-error" style="color: red; display: none;">Invalid email or password. Please try again.</p>
+</section>
+
+  <section id="home" class="page">
+    <h2>Explore Our Courses</h2>
+    <button id="view-courses-btn">View Courses</button>
+  </section>
+
+  <section id="courses" class="page hidden">
+    <h2>Available Courses</h2>
+    <div id="course-list">
+      <!-- Course items will be populated here by JavaScript -->
+    </div>
+    <button id="back-home-btn">Back to Home</button>
+  </section>
+
+  <section id="course-detail" class="page hidden">
+    <h2>Course Detail</h2>
+    <div id="course-detail-content">
+      <!-- Detailed course content will go here -->
+    </div>
+    <button id="back-to-courses-btn">Back to Courses</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 E-Learning Platform</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
