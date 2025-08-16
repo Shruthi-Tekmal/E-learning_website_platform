@@ -1,5 +1,5 @@
 // Sample course data with detailed descriptions and links
-const courses = [
+/*const courses = [
     {
       title: 'Introduction to Programming',
       description: 'Learn the basics of programming in various languages.',
@@ -122,4 +122,119 @@ const courses = [
     `;
     coursesSection.classList.add('hidden');
     courseDetailSection.classList.remove('hidden');
+  }*/
+const courses = [
+  {
+    id: 1,
+    title: "Introduction to Programming",
+    description: "Learn the basics of programming in various languages.",
+    detail: `
+      <h3>Introduction to Programming</h3>
+      <p>Learn variables, loops, functions, and OOP in Python, Java, and C++.</p>`,
+    link: "https://www.geeksforgeeks.org/computer-science-fundamentals/introduction-to-programming-languages/"
+  },
+  {
+    id: 2,
+    title: "Web Development Bootcamp",
+    description: "A comprehensive guide to building modern web applications.",
+    detail: `
+      <h3>Web Development Bootcamp</h3>
+      <p>Master HTML, CSS, JavaScript, React, and Node.js for full-stack development.</p>`,
+    link: "https://www.geeksforgeeks.org/web-tech/web-development/"
+  },
+  {
+    id: 3,
+    title: "Data Science with Python",
+    description: "Learn Python for data science and machine learning.",
+    detail: `
+      <h3>Data Science with Python</h3>
+      <p>Work with Pandas, Matplotlib, Scikit-learn to build real-world ML projects.</p>`,
+    link: "https://www.geeksforgeeks.org/data-science/python-for-data-science/"
   }
+];
+
+// DOM Elements
+const loginSection = document.getElementById("login");
+const homeSection = document.getElementById("home");
+const coursesSection = document.getElementById("courses");
+const courseDetailSection = document.getElementById("course-detail");
+const courseListDiv = document.getElementById("course-list");
+const courseDetailContent = document.getElementById("course-detail-content");
+const loginForm = document.getElementById("login-form");
+const loginError = document.getElementById("login-error");
+
+const viewCoursesBtn = document.getElementById("view-courses-btn");
+const backHomeBtn = document.getElementById("back-home-btn");
+const backToCoursesBtn = document.getElementById("back-to-courses-btn");
+
+// Initial Display
+window.onload = () => {
+  loginSection.classList.remove("hidden");
+  homeSection.classList.add("hidden");
+  coursesSection.classList.add("hidden");
+  courseDetailSection.classList.add("hidden");
+};
+
+// Demo Login Logic
+const validCredentials = {
+  email: "user@example.com",
+  password: "12345"
+};
+
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if (email === validCredentials.email && password === validCredentials.password) {
+    loginError.style.display = "none";
+    loginSection.classList.add("hidden");
+    homeSection.classList.remove("hidden");
+  } else {
+    loginError.style.display = "block";
+  }
+});
+
+viewCoursesBtn.addEventListener("click", () => {
+  homeSection.classList.add("hidden");
+  coursesSection.classList.remove("hidden");
+  renderCourses();
+});
+
+backHomeBtn.addEventListener("click", () => {
+  coursesSection.classList.add("hidden");
+  homeSection.classList.remove("hidden");
+});
+
+backToCoursesBtn.addEventListener("click", () => {
+  courseDetailSection.classList.add("hidden");
+  coursesSection.classList.remove("hidden");
+});
+
+// Render Courses
+function renderCourses() {
+  courseListDiv.innerHTML = "";
+  courses.forEach((course) => {
+    const card = document.createElement("div");
+    card.className = "course-card";
+    card.innerHTML = `
+      <h3>${course.title}</h3>
+      <p>${course.description}</p>
+      <button onclick="viewCourseDetails(${course.id})">View Details</button>
+    `;
+    courseListDiv.appendChild(card);
+  });
+}
+
+// Show Course Detail
+function viewCourseDetails(id) {
+  const course = courses.find((c) => c.id === id);
+  courseDetailContent.innerHTML = `
+    ${course.detail}
+    <p><a href="${course.link}" target="_blank">Learn more</a></p>
+  `;
+  coursesSection.classList.add("hidden");
+  courseDetailSection.classList.remove("hidden");
+}
+
+
